@@ -210,11 +210,11 @@ if __name__ == "__main__":
         ticket_add_buttons = []
         if categories: 
             category = random.choice(categories)
-            category_element = check_for_element(driver, f'//div[contains(@class, "pc-list-category")]/span[contains(text(), "{category}")]', xpath=True, debugMode=True)
-            parent_form = check_for_element(category_element, './ancestor::form[1]', xpath=True, debugMode=True)
+            category_element = check_for_element(driver, f'//div[contains(@class, "pc-list-category")]/span[contains(text(), "{category}")]', xpath=True)
+            parent_form = check_for_element(category_element, './ancestor::form[1]', xpath=True)
         else: parent_form = random.choice(check_for_elements(driver, 'form[class="event-list-content js-focus-item js-form-timestamp   "]'))
-        ticket_element = check_for_element(parent_form, './div[2]/div/div/div/div[@data-qa="tickettype"]', xpath=True, debugMode=True)
-        ticket_add_element = check_for_element(ticket_element, './div[@class="ticket-type-stepper"]', xpath=True, debugMode=True)
+        ticket_element = check_for_element(parent_form, './div[2]/div/div/div/div[@data-qa="tickettype"]', xpath=True)
+        ticket_add_element = check_for_element(ticket_element, './div[@class="ticket-type-stepper"]', xpath=True)
 
         if not check_for_element(ticket_element, './div[@class="ticket-type-unavailable-sec"]', xpath=True): ticket_add_buttons.append(ticket_add_element)
         if not ticket_add_buttons: 
@@ -223,8 +223,8 @@ if __name__ == "__main__":
             continue
         for ticket_add_button in ticket_add_buttons:
             for i in range(0, amount):
-                check_for_element(ticket_add_button, './div/button[2]', click=True, xpath=True, debugMode=True)
-        buy_button = check_for_element(parent_form, './div[2]/div[2]/button', click=True, xpath=True, debugMode=True)
+                check_for_element(ticket_add_button, './div/button[2]', click=True, xpath=True)
+        buy_button = check_for_element(parent_form, './div[2]/div[2]/button', click=True, xpath=True)
         while True:
             if check_for_element(driver, '#spinner[style="display: none;"]'): break
             elif not check_for_element(driver, '#spinner'): break
