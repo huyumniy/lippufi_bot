@@ -388,6 +388,8 @@ if __name__ == "__main__":
     while True:
         driver.get(link)
         time.sleep(2)
+        if check_for_element(driver, "//h1[contains(text(),'Access Denied')]", xpath=True):
+            if proxy == 'vpn': reconnect_vpn(driver, vpn_url)
         ticket_add_buttons = []
         picked_category = ''
         if categories:
