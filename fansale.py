@@ -468,11 +468,13 @@ if __name__ == "__main__":
                     price_el = float(price_raw.text.replace(',', '.'))
                 except: continue
             amount_raw = check_for_element(event, 'span[class="EventEntryRow EventEntryRow-inDetailB NumberOfTicketsInOffer"]')
-            amount_raw_2 = check_for_element(event, 'div[class="Dropdown-Container js-Dropdown-Container NumberOfTicketsDropdown"] option:last-child')
+            amount_raw_2 = check_for_element(event, 'span[class="Dropdown-DisplayValue"]')
             if amount_raw_2: print(amount_raw_2.text)
             #div[class="OfferEntry-Overlay js-OfferEntry-Overlay"]
             event_amount = 0
             if amount_raw: event_amount = amount_raw.text
+            elif amount_raw_2: event_amount = amount_raw_2.text
+            
             if (price[0] <= price_el and price_el <= price[1]) and \
             (amount[0] <= int(event_amount) and amount[1] >= int(event_amount)): necessary_tickets.append(event)
         if not necessary_tickets:

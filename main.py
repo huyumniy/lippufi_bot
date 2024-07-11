@@ -302,6 +302,7 @@ def post_request(data, endpoint='/book', port='80'):
     }
 
     # Send the POST request 
+    print(f"http://localhost:{port}{endpoint}")
     try:
         response = requests.post(f"http://localhost:{port}{endpoint}", data=json_data, headers=headers)
         print(response)
